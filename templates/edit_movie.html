@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f0f0f0; */
+            background: linear-gradient(45deg, #f3ec78, #af4261);
+            padding: 20px;
+        }
+        .container {
+            /* background-color: #fff; */
+            background: linear-gradient(45deg, #f3ec78, #af4261);
+
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        input[readonly] {
+            background-color: #e9ecef;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Movie</h1>
+        <form action="" method="post">
+            <label for="title">Movie Title</label>
+            <input type="text" id="title" name="title" value="{{ movie[1] }}" readonly>
+            
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required>{{ movie[2] }}</textarea>
+            
+            <label for="year">Year</label>
+            <input type="number" id="year" name="year" value="{{ movie[3] }}" required>
+            
+            <label for="ratings">Ratings</label>
+            <input type="number" step="1" id="ratings" name="ratings" value="{{ movie[4] }}" required>
+            
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" required>
+                <option value="Action" {% if movie[5] == 'Action' %}selected{% endif %}>Action</option>
+                <option value="Romance" {% if movie[5] == 'Romance' %}selected{% endif %}>Romance</option>
+                <option value="Sci-Fi" {% if movie[5] == 'Sci-Fi' %}selected{% endif %}>Sci-Fi</option>
+                <option value="Anime" {% if movie[5] == 'Anime' %}selected{% endif %}>Anime</option>
+                <option value="Biopic" {% if movie[5] == 'Biopic' %}selected{% endif %}>Biopic</option>
+            </select>
+            
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>
